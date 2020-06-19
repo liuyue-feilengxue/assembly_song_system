@@ -1,73 +1,307 @@
-Microsoft (R) Macro Assembler Version 6.11		    06/19/20 12:34:45
+Microsoft (R) Macro Assembler Version 6.11		    06/19/20 21:37:32
 tempfile.asm						     Page 1 - 1
 
 
- 0000				DATAS SEGMENT
-				    ;此处输入数据段代码  
- 0000 014A 0126 0106 0126	    mus_freg dw 330,294,262,294,3 dup(330)
-       0003 [
-        014A
-       ]
- 000E  0003 [			    		 dw 3 dup(294),330,392,392
-        0126
-       ] 014A 0188 0188
- 001A  014A 0126 0106		    		 dw 330,294,262,294,4 dup(330)
+				assume cs:codeseg, ds:dataseg, ss:stackseg
+ 0000				dataseg segment
+				;有需要的请修改这里，mus_freq为音调，mus_time为音长
+				;基础乐理自行学习
+				;4/4拍的歌，在mus_time中，一个节拍是25，半拍12，两拍50
+				;《刚好遇见你》由于音太高，调低8度，节奏也减慢
+				;只有副歌部分
+ 0000 0106 0106 0106		mus_freq1 dw 262,262,262
+ 0006  0106 00DC 020C				  dw 262,220,524,440,440,440,392
+       01B8 01B8 01B8
+       0188
+ 0014  0188 014A 014A				  dw 392,330,330,262,294,262,262
+       0106 0126 0106
+       0106
+ 0022  0106 00DC 020C				  dw 262,220,524,587,524,524,440
+       024B 020C 020C
+       01B8
+ 0030  01B8 0188 014A				  dw 440,392,330,392,294,262,247
+       0188 0126 0106
+       00F7
+ 003E  0106 00DC 020C				  dw 262,220,524,440,440,440,392
+       01B8 01B8 01B8
+       0188
+ 004C  0188 0188 014A				  dw 392,392,330,392,294,262,294
+       0188 0126 0106
        0126
-       0004 [
-        014A
-       ]
- 002A  0126 0126 014A		    		 dw 294,294,330,294,262,-1
-       0126 0106 FFFF
- 0036  0006 [			    mus_time dw 6 dup(25),50
+ 005A  0106 00F7 0106				  dw 262,247,262,262,262,294
+       0106 0106 0126
+ 0066  014A 0126 0106				  dw 330,294,262,262,247,262,262
+       0106 00F7 0106
+       0106
+ 0074  FFFF					  dw -1
+ 0076  0003 [			mus_time1 dw 3 dup(25)
         0019
-       ] 0032
- 0044  0002 [			    		 dw 2 dup(25,25,50)
-        0019 0019 0032
        ]
- 0050  000C [			    		 dw 12 dup(25),100
-        0019
-       ] 0064
- 006A				DATAS ENDS
+ 007C  0019 0019 0019				  dw 25,25,25,25,50,25,25
+       0019 0032 0019
+       0019
+ 008A  0019 0019 0019				  dw 25,25,25,25,50,25,25
+       0019 0032 0019
+       0019
+ 0098  0019 0019 0019				  dw 25,25,25,25,50,25,25
+       0019 0032 0019
+       0019
+ 00A6  0019 0019 0019				  dw 25,25,25,25,50,25,25
+       0019 0032 0019
+       0019
+ 00B4  0019 0019 0019				  dw 25,25,25,25,50,25,25
+       0019 0032 0019
+       0019
+ 00C2  0019 0019 0019				  dw 25,25,25,25,50,25,25
+       0019 0032 0019
+       0019
+ 00D0  0019 000C 000C				  dw 25,12,12,100,25,25
+       0064 0019 0019
+ 00DC  0019 000C 000C				  dw 25,12,12,25,12,12,100
+       0019 000C 000C
+       0064
+				;《成都》3/4拍，一拍25，两拍50，半拍12
+ 00EA 00C4 0106			mus_freq2 dw 196,262
+ 00EE  0106 0126 014A				  dw 262,294,330
+ 00F4  0188 014A 014A				  dw 392,330,330
+ 00FA  014A 00C4				  dw 330,196
+ 00FE  0106					  dw 262
+ 0100  0126 0106 00DC				  dw 294,262,220
+ 0106  00C4 00C4				  dw 196,196
+ 010A  0106 0106 0126				  dw 262,262,294,330
+       014A
+ 0112  01B8 014A 0188				  dw 440,330,392
+ 0118  014A 0126				  dw 330,294
+ 011C  0106					  dw 262
+ 011E  0126 0188				  dw 294,392
+ 0122  014A 0126				  dw 330,294
+ 0126  014A 0188				  dw 330,392
+ 012A  0188 014A 0188				  dw 392,330,392
+ 0130  01B8 020C 01B8				  dw 440,524,440
+ 0136  014A 0126 0106				  dw 330,294,262
+ 013C  0126 014A 014A				  dw 294,330,330
+ 0142  00C4 0188				  dw 196,392
+ 0146  014A 014A				  dw 330,330
+ 014A  0126 0106 0106				  dw 294,262,262
+ 0150  00C4 0126 0106				  dw 196,294,262
+ 0156  014A 0126 0106				  dw 330,294,262
+ 015C  0106					  dw 262
+ 015E  FFFF					  dw -1
+ 0160 0019 004B			mus_time2 dw 25,75
+ 0164  0032 000C 000C				  dw 50,12,12
+ 016A  0019 0019 0019				  dw 25,25,25
+ 0170  0019 0032				  dw 25,50
+ 0174  004B					  dw 75
+ 0176  0019 0019 0019				  dw 25,25,25
+ 017C  007D 0019				  dw 125,25
+ 0180  004B 0032 000C				  dw 75,50,12,12
+       000C
+ 0188  0019 0019 0032				  dw 25,25,50
+ 018E  0019 0019				  dw 25,25
+ 0192  004B					  dw 75
+ 0194  0032 0019				  dw 50,25
+ 0198  0019 0064				  dw 25,100
+ 019C  0019 004B				  dw 25,75
+ 01A0  0019 0019 0019				  dw 25,25,25
+ 01A6  0019 0019 004B				  dw 25,25,75
+ 01AC  0019 0032 0019				  dw 25,50,25
+ 01B2  0032 0019 007D				  dw 50,25,125
+ 01B8  0019 0064				  dw 25,100
+ 01BC  0019 0019				  dw 25,25
+ 01C0  0019 0019 004B				  dw 25,25,75
+ 01C6  0019 0032 0019				  dw 25,50,25
+ 01CC  0032 000C 000C				  dw 50,12,12
+ 01D2  00C8					  dw 200
+						  
+				;《暧昧》（薛之谦版）4/4拍，由于曲速慢，所以一拍为50，半拍25
+ 01D4 0106 0106 0106 0126	mus_freq3 dw 262,262,262,294,262
+       0106
+ 01DE  0188 01B8 014A				  dw 392,440,330,330,294
+       014A 0126
+ 01E8  00F7 00F7 00F7				  dw 247,247,247,262,247
+       0106 00F7
+ 01F2  014A 0188 00F7				  dw 330,392,247,294,262
+       0126 0106
+ 01FC  00DC 00F7 00DC				  dw 220,247,220,247,220
+       00F7 00DC
+ 0206  014A 015D 0106				  dw 330,349,262,220,247
+       00DC 00F7
+ 0210  00C4 0106 0126				  dw 196,262,294,294
+       0126
+ 0218  015D 014A 014A				  dw 349,330,330,294,262,294
+       0126 0106 0126
+ 0224  014A 0106 0106				  dw 330,262,262,262,294,262
+       0106 0126 0106
+ 0230  0188 01B8 014A				  dw 392,440,330,330,294
+       014A 0126
+ 023A  0126 00F7 00F7				  dw 294,247,247,247,262,247
+       00F7 0106 00F7
+ 0246  014A 0188 00F7				  dw 330,392,247,294,262
+       0126 0106
+ 0250  00DC 00F7 00DC				  dw 220,247,220,247,220
+       00F7 00DC
+ 025A  014A 015D 00DC				  dw 330,349,220,262,247
+       0106 00F7
+ 0264  00F7 014A 0188				  dw 247,330,392,294,262
+       0126 0106
+ 026E  FFFF					  dw -1
+ 0270 0019 0019 0019 0019	mus_time3 dw 25,25,25,25,25
+       0019
+ 027A  0019 0064 0019				  dw 25,100,25,25,100
+       0019 0064
+ 0284  0019 0019 0019				  dw 25,25,25,25,25
+       0019 0019
+ 028E  0019 0064 0019				  dw 25,100,25,25,100
+       0019 0064
+ 0298  0019 0019 0019				  dw 25,25,25,25,25
+       0019 0019
+ 02A2  0019 0064 0019				  dw 25,100,25,25,75
+       0019 004B
+ 02AC  0019 0032 0032				  dw 25,50,50,25
+       0019
+ 02B4  0032 0019 0019				  dw 50,25,25,25,50,25
+       0019 0032 0019
+ 02C0  004B 0019 0019				  dw 75,25,25,25,25,25
+       0019 0019 0019
+ 02CC  0019 0064 0019				  dw 25,100,25,25,25
+       0019 0019
+ 02D6  004B 0019 0019				  dw 75,25,25,25,25,25
+       0019 0019 0019
+ 02E2  0019 0064 0019				  dw 25,100,25,25,100
+       0019 0064
+ 02EC  0019 0019 0019				  dw 25,25,25,25,25
+       0019 0019
+ 02F6  0019 0064 0019				  dw 25,100,25,25,25
+       0019 0019
+ 0300  0064 0032 0019				  dw 100,50,25,50,75
+       0032 004B
+ 030A 50 6C 65 61 73 65		str1 db 'Please select the song you want',0ah,0dh,'$'
+       20 73 65 6C 65 63
+       74 20 74 68 65 20
+       73 6F 6E 67 20 79
+       6F 75 20 77 61 6E
+       74 0A 0D 24
+ 032C  0003 [			inbuf db 3 dup(?)
+        00
+       ]
+ 032F				dataseg ends
 
- 0000				STACKS SEGMENT
-				    ;此处输入堆栈段代码
- 0000				STACKS ENDS
+ 0000				stackseg segment
+ 0000  0100 [			   db 100h dup (0)
+        00
+       ]
+ 0100				stackseg ends
 
- 0000				CODES SEGMENT
-				    ASSUME CS:CODES,DS:DATAS,SS:STACKS
- 0000				START:
- 0000  B8 ---- R		    MOV AX,DATAS
- 0003  8E D8			    MOV DS,AX
-				    ;此处输入代码段代码
+ 0000				codeseg segment
+ 0000				start:
+ 0000  B8 ---- R		    mov ax, stackseg
+ 0003  8E D0			    mov ss, ax
+ 0005  BC 0100			    mov sp, 100h
+
+ 0008  B8 ---- R		    mov ax, dataseg
+ 000B  8E D8			    mov ds, ax
+					
+					;提示语
+ 000D  BA 030A R			MOV DX,OFFSET str1
+ 0010  B4 09			    MOV AH,09H
+ 0012  CD 21			    INT 21H
+				    ;输入需要演奏哪一首歌
+ 0014				a1:
+					;输入
+ 0014  B4 01				 mov ah,01
+ 0016  CD 21				 int 21h
+					;判断回车
+ 0018  3C 0D				 cmp al,0dh
+ 001A  74 07				 je contin
+					;存入inpuf
+ 001C  88 85 032C R			 mov inbuf[di],al
+ 0020  47				 inc di
+ 0021  E2 F1				 loop a1
+ 0023				contin:
+ 0023  BF 0000				mov di,0
+ 0026  80 BD 032C R 31			cmp inbuf[di],31h
+ 002B  74 10				je mus1
+ 002D  80 BD 032C R 32			cmp inbuf[di],32h
+ 0032  74 13				je mus2
+ 0034  80 BD 032C R 33			cmp inbuf[di],33h
+ 0039  74 16				je mus3
+					
+ 003B  EB 2E				jmp end_mus
+					;第一首歌
+ 003D				mus1:
+ 003D  8D 36 0000 R			lea si, mus_freq1
+ 0041  8D 3E 0076 R		    lea di, mus_time1
+ 0045  EB 12			    jmp freq
+				    ;初始化完成
+ 0047				mus2:
+ 0047  8D 36 00EA R			lea si, mus_freq2
+ 004B  8D 3E 0160 R		    lea di, mus_time2
+ 004F  EB 08			    jmp freq
+ 0051				mus3:
+ 0051  8D 36 01D4 R			lea si, mus_freq3
+ 0055  8D 3E 0270 R		    lea di, mus_time3
+
+ 0059				freq:
+ 0059  8B 14			    mov dx, [si]
+ 005B  83 FA FF			    cmp dx, -1;最后一个音符为-1，结束
+ 005E  74 0B			    je end_mus
+ 0060  E8 000D			    call sound
+ 0063  83 C6 02			    add si, 2
+ 0066  83 C7 02			    add di, 2
+ 0069  EB EE			    jmp freq
+
+ 006B				end_mus:
+ 006B  B8 4C00			    mov ax, 4c00h
+ 006E  CD 21			    int 21h
+
+				;演奏一个音符（书P389改编）
+				;si - 要演奏的音符的频率的地址（音高）
+				;di - 要演奏的音符的音长的地址（音持续时间）
+ 0070				sound:
+ 0070  50			    push ax
+ 0071  52			    push dx
+ 0072  51			    push cx
+					
+					;8253 芯片(定时/计数器)的设置
+ 0073  B0 B6			    mov al,0b6h    
+ 0075  E6 43			    out 43h,al     
+ 0077  BA 0012			    mov dx,12h
+ 007A  B8 348C			    mov ax,348ch
+ 007D  F7 34			    div word ptr [si] ;计算分频值,赋给ax。[si]中存放声音的频率值。***
+ 007F  E6 42			    out 42h, al       ;先送低8位到计数器
+ 0081  8A C4			    mov al, ah
+ 0083  E6 42			    out 42h, al       ;后送高8位计数器
+
+				    ;设置8255芯片, 控制扬声器的开/关
+ 0085  E4 61			    in al,61h   ;读取8255 B端口原值
+ 0087  8A E0			    mov ah,al   ;保存原值到ah
+ 0089  0C 03			    or al,3     ;使低两位置1，以便打开开关
+ 008B  E6 61			    out 61h,al  ;开扬声器, 发声
+
+ 008D  8B 15			    mov dx, [di]       ;保持[di]时长
+ 008F				wait1:
+ 008F  B9 C350			    mov cx, 50000
+ 0092				delay:
+ 0092  E2 FE			    loop delay
+ 0094  4A			    dec dx
+ 0095  75 F8			    jnz wait1
+
+ 0097  8A C4			    mov al, ah         ;恢复扬声器端口原值
+ 0099  E6 61			    out 61h, al
+
+ 009B  B9 2710				mov cx, 10000
+ 009E				delay1:
+ 009E  E2 FE			    loop delay1
 				    
- 0005  B0 B6			    mov al,0b6h
- 0007  E6 43			    out 43h,al
- 0009  BA 0012			    mov dx,12h
- 000C  B8 348C			    mov ax,348Ch
- 000F  F7 F7			    div di
- 0011  E6 42			    out 42h,al
- 0013  8A C4			    mov al,ah
- 0015  E6 42			    out 42h,al
- 0017  E4 61			    in al,61h
- 0019  8A E0			    mov ah,al
- 001B  0C 03			    or al,3
- 001D  E6 61			    out 61h,al
- 001F				wait1:
- 001F  B9 0AF0				mov cx,2800
- 0022				delay:
- 0022  E2 FE				loop delay
- 0024  4B				dec bx
- 0025  75 F8				jnz wait1
- 0027  8A C4				mov al,ah
- 0029  E6 61				out 61h,al
-				    
- 002B  B4 4C			    MOV AH,4CH
- 002D  CD 21			    INT 21H
- 002F				CODES ENDS
-				    END START
+ 00A0  59			    pop cx
+ 00A1  5A			    pop dx
+ 00A2  58			    pop ax
+ 00A3  C3			    ret
 
+ 00A4				codeseg ends
+				end start
 
-Microsoft (R) Macro Assembler Version 6.11		    06/19/20 12:34:45
+Microsoft (R) Macro Assembler Version 6.11		    06/19/20 21:37:32
 tempfile.asm						     Symbols 2 - 1
 
 
@@ -77,20 +311,35 @@ Segments and Groups:
 
                 N a m e                 Size     Length   Align   Combine Class
 
-CODES  . . . . . . . . . . . . .	16 Bit	 002F	  Para	  Private 
-DATAS  . . . . . . . . . . . . .	16 Bit	 006A	  Para	  Private 
-STACKS . . . . . . . . . . . . .	16 Bit	 0000	  Para	  Private 
+codeseg  . . . . . . . . . . . .	16 Bit	 00A4	  Para	  Private 
+dataseg  . . . . . . . . . . . .	16 Bit	 032F	  Para	  Private 
+stackseg . . . . . . . . . . . .	16 Bit	 0100	  Para	  Private 
 
 
 Symbols:
 
                 N a m e                 Type     Value    Attr
 
-START  . . . . . . . . . . . . .	L Near	 0000	  CODES	
-delay  . . . . . . . . . . . . .	L Near	 0022	  CODES	
-mus_freg . . . . . . . . . . . .	Word	 0000	  DATAS	
-mus_time . . . . . . . . . . . .	Word	 0036	  DATAS	
-wait1  . . . . . . . . . . . . .	L Near	 001F	  CODES	
+a1 . . . . . . . . . . . . . . .	L Near	 0014	  codeseg	
+contin . . . . . . . . . . . . .	L Near	 0023	  codeseg	
+delay1 . . . . . . . . . . . . .	L Near	 009E	  codeseg	
+delay  . . . . . . . . . . . . .	L Near	 0092	  codeseg	
+end_mus  . . . . . . . . . . . .	L Near	 006B	  codeseg	
+freq . . . . . . . . . . . . . .	L Near	 0059	  codeseg	
+inbuf  . . . . . . . . . . . . .	Byte	 032C	  dataseg	
+mus1 . . . . . . . . . . . . . .	L Near	 003D	  codeseg	
+mus2 . . . . . . . . . . . . . .	L Near	 0047	  codeseg	
+mus3 . . . . . . . . . . . . . .	L Near	 0051	  codeseg	
+mus_freq1  . . . . . . . . . . .	Word	 0000	  dataseg	
+mus_freq2  . . . . . . . . . . .	Word	 00EA	  dataseg	
+mus_freq3  . . . . . . . . . . .	Word	 01D4	  dataseg	
+mus_time1  . . . . . . . . . . .	Word	 0076	  dataseg	
+mus_time2  . . . . . . . . . . .	Word	 0160	  dataseg	
+mus_time3  . . . . . . . . . . .	Word	 0270	  dataseg	
+sound  . . . . . . . . . . . . .	L Near	 0070	  codeseg	
+start  . . . . . . . . . . . . .	L Near	 0000	  codeseg	
+str1 . . . . . . . . . . . . . .	Byte	 030A	  dataseg	
+wait1  . . . . . . . . . . . . .	L Near	 008F	  codeseg	
 
 	   0 Warnings
 	   0 Errors
