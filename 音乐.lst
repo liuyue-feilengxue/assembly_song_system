@@ -1,0 +1,96 @@
+Microsoft (R) Macro Assembler Version 6.11		    06/19/20 12:34:45
+tempfile.asm						     Page 1 - 1
+
+
+ 0000				DATAS SEGMENT
+				    ;此处输入数据段代码  
+ 0000 014A 0126 0106 0126	    mus_freg dw 330,294,262,294,3 dup(330)
+       0003 [
+        014A
+       ]
+ 000E  0003 [			    		 dw 3 dup(294),330,392,392
+        0126
+       ] 014A 0188 0188
+ 001A  014A 0126 0106		    		 dw 330,294,262,294,4 dup(330)
+       0126
+       0004 [
+        014A
+       ]
+ 002A  0126 0126 014A		    		 dw 294,294,330,294,262,-1
+       0126 0106 FFFF
+ 0036  0006 [			    mus_time dw 6 dup(25),50
+        0019
+       ] 0032
+ 0044  0002 [			    		 dw 2 dup(25,25,50)
+        0019 0019 0032
+       ]
+ 0050  000C [			    		 dw 12 dup(25),100
+        0019
+       ] 0064
+ 006A				DATAS ENDS
+
+ 0000				STACKS SEGMENT
+				    ;此处输入堆栈段代码
+ 0000				STACKS ENDS
+
+ 0000				CODES SEGMENT
+				    ASSUME CS:CODES,DS:DATAS,SS:STACKS
+ 0000				START:
+ 0000  B8 ---- R		    MOV AX,DATAS
+ 0003  8E D8			    MOV DS,AX
+				    ;此处输入代码段代码
+				    
+ 0005  B0 B6			    mov al,0b6h
+ 0007  E6 43			    out 43h,al
+ 0009  BA 0012			    mov dx,12h
+ 000C  B8 348C			    mov ax,348Ch
+ 000F  F7 F7			    div di
+ 0011  E6 42			    out 42h,al
+ 0013  8A C4			    mov al,ah
+ 0015  E6 42			    out 42h,al
+ 0017  E4 61			    in al,61h
+ 0019  8A E0			    mov ah,al
+ 001B  0C 03			    or al,3
+ 001D  E6 61			    out 61h,al
+ 001F				wait1:
+ 001F  B9 0AF0				mov cx,2800
+ 0022				delay:
+ 0022  E2 FE				loop delay
+ 0024  4B				dec bx
+ 0025  75 F8				jnz wait1
+ 0027  8A C4				mov al,ah
+ 0029  E6 61				out 61h,al
+				    
+ 002B  B4 4C			    MOV AH,4CH
+ 002D  CD 21			    INT 21H
+ 002F				CODES ENDS
+				    END START
+
+
+Microsoft (R) Macro Assembler Version 6.11		    06/19/20 12:34:45
+tempfile.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+CODES  . . . . . . . . . . . . .	16 Bit	 002F	  Para	  Private 
+DATAS  . . . . . . . . . . . . .	16 Bit	 006A	  Para	  Private 
+STACKS . . . . . . . . . . . . .	16 Bit	 0000	  Para	  Private 
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+START  . . . . . . . . . . . . .	L Near	 0000	  CODES	
+delay  . . . . . . . . . . . . .	L Near	 0022	  CODES	
+mus_freg . . . . . . . . . . . .	Word	 0000	  DATAS	
+mus_time . . . . . . . . . . . .	Word	 0036	  DATAS	
+wait1  . . . . . . . . . . . . .	L Near	 001F	  CODES	
+
+	   0 Warnings
+	   0 Errors
