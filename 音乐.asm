@@ -2,7 +2,7 @@ assume cs:codeseg, ds:dataseg, ss:stackseg
 dataseg segment
 ;有需要的请修改这里，mus_freq为音调，mus_time为音长
 ;基础乐理自行学习
-;4/4拍的歌，在mus_time中，一个节拍是25，半拍12，两拍50
+;4/4拍的歌，在mus_time中，一个节拍是50，半拍25，两拍100
 ;《刚好遇见你》由于音太高，调低8度，节奏也减慢
 ;只有副歌部分
 mus_freq1 dw 262,262,262
@@ -15,7 +15,7 @@ mus_freq1 dw 262,262,262
 		  dw 262,247,262,262,262,294
 		  dw 330,294,262,262,247,262,262
 		  dw -1
-mus_time1 dw 3 dup(25)
+mus_time1 dw 25,25,25
 		  dw 25,25,25,25,50,25,25
 		  dw 25,25,25,25,50,25,25
 		  dw 25,25,25,25,50,25,25
@@ -223,4 +223,5 @@ delay1:
 
 codeseg ends
 end start
+
 
